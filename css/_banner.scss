@@ -1,0 +1,46 @@
+@mixin pad{
+    @media(max-width: 767px){
+        @content        
+    }
+}
+
+$background_color: #efe9e7;
+
+.banner{
+    background-image: url(../images/header_desktop.png);
+    background-size: cover;
+    background-position: center center;
+    height: 420px;
+    position: relative;
+    @include pad(){
+        background-image: url(../images/header_mobile.png);
+    }
+    .center_box{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-color: rgba(0,0,0,0.3);
+        color: $background_color;
+        text-align: center;
+        padding: 25px 30px;
+        @include pad(){
+            width: 300px;
+        }
+        h1{
+            font-size: 180%;
+            font-weight: 500;
+            margin-bottom: 10px;
+            .break{
+                @include pad(){
+                    display: block;
+                }
+            }
+        }
+        p{
+            font-size: 18px;
+            font-weight: 300;  
+            line-height: 1.3;  
+        }
+    }
+}

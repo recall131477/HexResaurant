@@ -1,0 +1,121 @@
+@mixin hide-text {
+  overflow: hidden;
+  text-indent: 101%;
+  white-space: nowrap;
+}
+
+@mixin pad{
+  @media(max-width: 767px){
+      @content        
+  }
+}
+
+$background_color: #efe9e7;
+$text_color: #3d1101;
+
+.header{
+    width: 100%;
+    position: fixed;
+    z-index: 99;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #4a4a4a;
+    align-items: center;
+    background-color: rgba(0,0,0,0.7);
+    @include pad(){
+      display: block;
+    }
+    .logo{
+      padding: 0 16px;
+      @include pad(){
+        padding: 15px;
+      }
+      .six{ 
+        width: 120px;
+        height: 24px;
+        display: block;
+        background-image: url(../images/logo_w.png);
+        background-repeat: no-repeat;
+        @include hide-text;
+      }
+    }
+    .showmenu{
+      width: 30px;
+      height: 20px;
+      position: absolute;
+      right: 15px;
+      top: 17px;
+      cursor: pointer;
+      display: none;
+      @include pad(){
+        display: block;
+      }
+      .bar-top,.bar-middle,.bar-bottom{
+        display: block;
+        position: absolute;
+        width: 30px;
+        height: 2px;
+        background-color: #fff;
+        transition: all 0.5s;
+      }
+      .bar-top{
+        top: 0;
+      }
+      .bar-middle{
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .bar-bottom{
+        bottom: 0;
+      }
+    }
+    .showmenu.click{
+      .bar-top{
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .bar-middle{
+        opacity: 0;
+      }
+      .bar-bottom{
+        bottom: 50%;
+        transform: translateY(-50%);
+      }
+    }
+    ul{
+      &.open{
+        max-height: 200px;
+      }
+      display: flex;
+      @include pad(){
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.5s;
+        display: block;
+      }
+      li{
+        @include pad(){
+          display: block;
+          margin-left: 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+          &:last-child{
+            border: none;
+          }
+        }
+      }
+      a{
+        padding: 20px;
+        display: block;
+        color: $background_color;
+        @include pad(){
+          padding: 15px;
+        }
+        &:hover{
+          color: $text_color;
+          background-color: $background_color;
+        }
+      }
+    }
+}
